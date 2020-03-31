@@ -1,4 +1,4 @@
-package com.example.wikipedia.activities
+package com.example.wikipedia
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -8,25 +8,45 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.wikipedia.R
+import fragments.ExploreFragment
+import fragments.FavoriteFragment
+import fragments.HistoryFragment
 
 class MainActivity : AppCompatActivity() {
 
+    private val exploreFragment : ExploreFragment
+    private val favoriteFragment : FavoriteFragment
+    private val historyFragment : HistoryFragment
+
+    init {
+        exploreFragment = ExploreFragment()
+        favoriteFragment = FavoriteFragment()
+        historyFragment = HistoryFragment()
+    }
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimation(android.R.anim.fade_in,android.R.anim.fade_out)
+
+        when(item.itemId){
+            R.id.navigation_explore -> transaction.replace(R.id.fragment_container,exploreFragment)
+            R.id.navigation_favorite -> transaction.replace(R.id.fragment_container,favoriteFragment)
+            R.id.navigation_history -> transaction.replace(R.id.fragment_container,historyFragment)
+        }
+        transaction.commit()
+
+        true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        selectContentView(R.layout.activity_main)
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.fragment_container, exploreFragment)
+        transaction.commit()
 
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
     }
 }

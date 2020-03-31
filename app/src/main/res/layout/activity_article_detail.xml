@@ -9,18 +9,17 @@
         android:layout_width="match_parent">
         <android.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:theme="@style/ThemeOverLay.AppCompat.Dark.ActionBar"/>
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
 
 
     </android.support.design.widget.AppBarLayout>
     <WebView
-        android:id="@+id/article_detail_webview"
+        android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <ProgressBar
-        android:id="@+id/page_progress_bar"
+        android:id="@+id/progressbar"
         android:layout_width="56dp"
         android:layout_height="56dp"/>
 

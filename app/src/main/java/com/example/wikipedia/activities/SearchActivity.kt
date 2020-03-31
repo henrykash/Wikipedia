@@ -1,4 +1,4 @@
-package com.example.wikipedia.activities
+package com.example.wikipedia
 
 import android.app.SearchManager
 import android.content.Context
@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.getSystemService
 import com.example.wikipedia.R
+import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
 
@@ -16,8 +17,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+       // setSupportActionBar(toolbar)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
